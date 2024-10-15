@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS  # Importa a extensão Flask-CORS
 from algoliasearch.search_client import SearchClient
 
 app = Flask(__name__)
-
-# client = SearchClient.create("SIZMAGZTIC", "4bb7bc325b929f19973cc2436a860f96")
-# index = client.init_index('products_index')
+CORS(app)  # Habilita CORS para o aplicativo
 
 client = SearchClient.create("0A7VAU2G2V", "311bee779c8826859bb705b29ab2dab4")
 index = client.init_index('algolia')
