@@ -1,28 +1,16 @@
-from flask import Flask, jsonify, request
+from fastapi import FastAPI
 from algoliasearch.search_client import SearchClient
 
-app = Flask(__name__)
+app = FastAPI()
 
 client = SearchClient.create("SIZMAGZTIC", "4bb7bc325b929f19973cc2436a860f96")
 
 index = client.init_index('products_index')
 
-@app.route('/search', methods=['GET'])
-def obter_dados():
-    nome_produto = request.args.get('nome')
-
-    results = index.search(nome_produto)
-
-    # results = index.search(nome_produto, {
-    #     'filters': "brand: COFAP"
-    # })
+@app.get("/search/{name}")
+def get_products(name: str):
+    results = index.search(name)
 
     products = results["hits"]
 
-    print('qtd:', len(products))
-
-    return jsonify(products)
-
-# Iniciar o servidor
-if __name__ == '__main__':
-    app.run(debug=True)
+    return products
