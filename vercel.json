@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "endpoint.py",
+      "src": "/endpoint.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/search/(.*)",
-      "dest": "endpoint.py"
+      "dest": "/endpoint.py"
     }
   ]
 }
