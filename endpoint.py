@@ -3,7 +3,7 @@ from flask_cors import CORS  # Importa a extensão Flask-CORS
 from algoliasearch.search_client import SearchClient
 
 app = Flask(__name__)
-CORS(app)  # Habilita CORS para o aplicativo
+CORS(app, resources={r"/search/*": {"origins": "https://algolia--pitstop.myvtex.com"}})
 
 client = SearchClient.create("0A7VAU2G2V", "311bee779c8826859bb705b29ab2dab4")
 index = client.init_index('algolia')
